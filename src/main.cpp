@@ -30,12 +30,14 @@ void setup()
   // Start the DS18B20 sensor
   DS18B20.begin();
   Serial.println("\nTemperature Application");
-  Serial.print("Found DS18B20 sensor with address: ");
+  if (DS18B20.getAddress(sensor, 0)){
+    Serial.print("Found DS18B20 sensor with address: ");
+
   for (int i = 0; i < 8; i++)
   {
     Serial.print(sensor[i], HEX);
   }
-
+}
   if (!DS18B20.getAddress(sensor, 0))
     Serial.println("\nNo DS18B20 temperature sensors are installed!");
 }
